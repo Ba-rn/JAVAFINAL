@@ -13,9 +13,16 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
 
+    private Handler handler;
+
 
     public Game() {
         new Window(WIDTH, HEIGHT, "Dragster", this);
+
+        handler = new Handler();
+
+        handler.addObject(new Player(100, 100, ID.Player));
+        handler.addObject(new Player(200, 200, ID.Player));
     }
 
     public synchronized void start() {
@@ -31,6 +38,18 @@ public class Game extends Canvas implements Runnable {
         e.printStackTrace();
     }
     }
+    // explanation of the game loop
+    // this is not my general design for a game loop, many games and other interactive programs use something similar
+    // the first iteration of minecraft used a nearly identical game loop
+    // variables lastTime, now, and ns are used to calculate delta, 
+    // amountOfTicks is the amount of ticks/second and ns is the amount of nanoseconds/tick,
+    //  when delta is calculated, you have (now-lastTime) / (ns/tick), but now and lastTime are in nanoseconds so it's units are "tick" 
+    // this gets added to delta and we continue, when delta += 1, we know that one tick has passed and tick() gets called 
+    // this resets delta to 0 in delta >= 1 loop 
+    // the if (running) loop will render a new frame with the render() method and increase the frames counter by one
+    //if (System.currentTimeMillis() - timer > 100) loop writes the fps to the console by checking if the current time is 1000 ms (1second) 
+    // larger than timer, timer gets updated to one second later and the fps gets printed, happens once a second so variable frames is actually frames per second
+    // stop() stops the game
     public void run() {
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
@@ -59,6 +78,7 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
     private void tick() {
+        handler.tick();
 
     }
     private void render() {
@@ -72,7 +92,7 @@ public class Game extends Canvas implements Runnable {
 
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
-
+        handler.render(g);
         g.dispose();
         bs.show();
     }
