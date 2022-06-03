@@ -11,8 +11,6 @@ public class Player extends GameObject {
     public Player(int x, int y, ID id) {
         super(x, y, id);
 
-        velX = r.nextInt(5) + 1;
-        velY = r.nextInt(5) + 1;
     }
     
     public void tick() {
@@ -21,7 +19,11 @@ public class Player extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.white);
+        if (id == ID.Player) { 
+            g.setColor(Color.white);
+        } else if(id == ID.Player1) {
+            g.setColor(Color.BLUE);
+        }
         g.fillRect(x, y, 32, 32);
     }
 
