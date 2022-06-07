@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
-
+// Game class that contains main and the game loop
 public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
@@ -26,7 +26,7 @@ public class Game extends Canvas implements Runnable {
         r = new Random();
 
         handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player));
-        handler.addObject(new Player(WIDTH / 2 + 64, HEIGHT / 2 + 64, ID.Player1));
+        handler.addObject(new Player(WIDTH / 2 + 32, HEIGHT / 2 + 64, ID.Player1));
 
     }
 
