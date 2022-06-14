@@ -1,4 +1,4 @@
-package DRAGSTERGAME;
+package JAVAGAME;
 
 import java.awt.Graphics;
 import java.util.Random;
@@ -16,13 +16,14 @@ public class Player extends GameObject {
     public void tick() {
         x += velX;
         y += velY;
+
+        x = Game.clamp(x, 0, Game.WIDTH-48);
+        y = Game.clamp(y, 0, Game.HEIGHT-64);
     }
 
     public void render(Graphics g) {
         if (id == ID.Player) { 
             g.setColor(Color.white);
-        } else if(id == ID.Player1) {
-            g.setColor(Color.BLUE);
         }
         g.fillRect(x, y, 32, 32);
     }

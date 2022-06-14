@@ -1,7 +1,7 @@
-package DRAGSTERGAME;
+package JAVAGAME;
 
 public enum ID {
     Player(),
-    Player1();
+    BasicEnemy();
     
 }

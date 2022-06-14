@@ -1,4 +1,4 @@
-package DRAGSTERGAME;
+package JAVAGAME;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
