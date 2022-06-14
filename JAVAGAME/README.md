@@ -1,7 +1,4 @@
 MICHAEL BYRNE
 
-DRAGSTER IN JAVA
-
-I will get that 5.51 
-
-Meant to perfectly simulate the original Atari 2600 game from 1980
+My attempt at throwing together a game with no build tools.
+Hardly a game right now
