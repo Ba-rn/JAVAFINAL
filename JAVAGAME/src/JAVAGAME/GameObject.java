@@ -3,6 +3,8 @@ package JAVAGAME;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+//GameObject is the superclass for all of our other game objects like player or enemy 
+
 public abstract class GameObject {
     protected int x, y;
     protected ID id;
@@ -13,11 +15,14 @@ public abstract class GameObject {
         this.y = y;
         this.id = id;
     }
-    
+    // each GameObject needs to be able to update on a tick
     public abstract void tick();
+    // each GameObject needs to be able to be rendered to the screen using Graphics
     public abstract void render(Graphics g);
+    // allows us to establish collision which is not working lol
     public abstract Rectangle getBounds();
 
+    // getter and setter methods necessary for every game object to access it's fields 
     public void setX(int x) {
         this.x = x;
     }

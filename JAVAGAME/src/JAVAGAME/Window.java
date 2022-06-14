@@ -7,7 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-
+// window in which the game is displayed 
 public class Window extends Canvas {
 
     public Window(int width, int height, String title, Game game) {

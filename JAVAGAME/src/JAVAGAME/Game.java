@@ -19,11 +19,13 @@ public class Game extends Canvas implements Runnable {
     private Random r;
     private HUD hud;
 
+    // instantiates many of the game's objects like the visible window and the heads up display
+    // uses handler to add GameObjects Player, and BasicEnemy
     public Game() {
         handler = new Handler();
         this.addKeyListener(new KeyInput(handler));
 
-        new Window(WIDTH, HEIGHT, "Dragster", this);
+        new Window(WIDTH, HEIGHT, "Dodge Ball", this);
 
         hud = new HUD();
 
@@ -33,12 +35,13 @@ public class Game extends Canvas implements Runnable {
 
         handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
     }
-
+    // begins the working thread
     public synchronized void start() {
         thread = new Thread(this);
         thread.start();
         running = true;
     }
+    //halts the working thread
     public synchronized void stop() {
     try {
         thread.join();
@@ -47,7 +50,7 @@ public class Game extends Canvas implements Runnable {
         e.printStackTrace();
     }
     }
-    // explanation of the game loop
+    // explanation of the game loop / run method
     // this is not my general design for a game loop, many games and other interactive programs use something similar
     // the first iteration of minecraft used a nearly identical game loop
     // variables lastTime, now, and ns are used to calculate delta, 
@@ -87,11 +90,14 @@ public class Game extends Canvas implements Runnable {
         }
         stop();
     }
+    // tells the objects to tick when a tick has passed
     private void tick() {
         handler.tick();
         hud.tick();
 
     }
+    // renders the game using BufferStrategy which is an annoying little necessity 
+    // this game uses triple buffering which is clear from the call to createBufferStrategy() in which we use declare three buffers
     private void render() {
         BufferStrategy bs = this.getBufferStrategy(); 
         if (bs == null) {
@@ -109,7 +115,9 @@ public class Game extends Canvas implements Runnable {
         g.dispose();
         bs.show();
     }
-
+    // clamp is a very useful method which unlocks features that are usually hidden behind a game library
+    // clamp returns var at it's min or max when var appears to be outside of that maximum or minimum 
+    // this is used usually for collission stuff like making sure that the player can't leave the game boundaries 
     public static int clamp(int var, int min, int max) {
         if (var >= max) {
             return var = max;
@@ -119,6 +127,7 @@ public class Game extends Canvas implements Runnable {
             return var;
         }
     }
+    // main, runs the constructor
     public static void main(String[] args) {
         new Game();
     }
