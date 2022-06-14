@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.Random;
 import java.awt.Color;
 import java.awt.Rectangle;
-import java.awt.Graphics2D;
 
 public class Player extends GameObject {
 
@@ -44,9 +43,7 @@ public class Player extends GameObject {
     }
 
     public void render(Graphics g) {
-        if (id == ID.Player) { 
-            g.setColor(Color.white);
-        }
+        g.setColor(Color.white);
         g.fillRect(x, y, 32, 32);
     }
 
