@@ -97,7 +97,6 @@ public class Game extends Canvas implements Runnable {
 
     }
     // renders the game using BufferStrategy which is an annoying little necessity 
-    // this game uses triple buffering which is clear from the call to createBufferStrategy() in which we use declare three buffers
     private void render() {
         BufferStrategy bs = this.getBufferStrategy(); 
         if (bs == null) {
